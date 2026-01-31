@@ -1,0 +1,67 @@
+.admin-topbar {
+  height: 76px;
+  background: var(--color-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-width) solid var(--color-secondary);
+  padding: 0;
+  position: relative;
+  z-index: 900;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+}
+
+.sidebar-toggle-btn {
+  width: 44px;
+  height: 44px;
+  background: #FFFFFF;
+  border: var(--border-width) solid var(--color-secondary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.sidebar-toggle-btn:hover,
+.sidebar-toggle-btn:focus {
+  background: var(--color-secondary-light);
+  border-color: var(--color-secondary-hover);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.admin-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  background: var(--color-secondary);
+  border: var(--border-width) solid var(--color-secondary);
+}
+
+.admin-name {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-right: 10px;
+}
+
+.arrow-down-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}

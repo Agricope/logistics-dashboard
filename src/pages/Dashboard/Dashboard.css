@@ -1,0 +1,652 @@
+/* Dashboard Page */
+
+.dashboard-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #252525;
+  margin: 0;
+}
+
+/* Metrics Section */
+.dashboard-metrics-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.dashboard-metrics-grid {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.dashboard-metrics-left {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+  flex: 1;
+  width: 100%;
+}
+
+.dashboard-metric-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E7EC;
+  border-radius: 16px 0 16px 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard-metric-card-warning {
+  border-color: #F79009;
+}
+
+.dashboard-metric-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-metric-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.dashboard-metric-label {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #667085;
+}
+
+.dashboard-metric-value {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #252525;
+}
+
+/* Earnings Card */
+.dashboard-earnings-card {
+  background: linear-gradient(180deg, #0A5038 0%, #052419 100%);
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 378px;
+  flex-shrink: 0;
+  align-self: stretch;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.dashboard-earnings-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.dashboard-earnings-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.dashboard-earnings-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.dashboard-earnings-amount {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.dashboard-earnings-chart {
+  width: 166px;
+  height: 91px;
+}
+
+.dashboard-earnings-chart img {
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard-earnings-overall {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dashboard-earnings-button {
+  background: #FFFFFF;
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #494949;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+}
+
+.dashboard-earnings-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.dashboard-datepicker-modal {
+  position: absolute;
+  bottom: auto;
+  top: 100%;
+  left: 0;
+  margin-top: 12px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+/* Traffic Card */
+.dashboard-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E7EC;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.dashboard-traffic-card {
+  width: 100%;
+}
+
+.dashboard-card-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  color: #252525;
+  margin: 0 0 24px 0;
+}
+
+.dashboard-traffic-list {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+.dashboard-traffic-item {
+  display: flex;
+  align-items: center;
+  gap: 73.6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-traffic-source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.dashboard-traffic-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.dashboard-traffic-name {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #494949;
+  white-space: nowrap;
+}
+
+.dashboard-traffic-count {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #252525;
+  white-space: nowrap;
+}
+
+/* Charts Section */
+.dashboard-charts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 2px;
+  background: #F9FAFB;
+  border: 1px solid #E4E7EC;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.dashboard-tab {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #667085;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dashboard-tab-active {
+  background: #FFFFFF;
+  color: #252525;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+.dashboard-chart-container {
+  min-height: 300px;
+}
+
+.dashboard-recharts-wrapper {
+  padding: 20px 0;
+}
+
+.dashboard-chart-placeholder {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F9FAFB;
+  border-radius: 8px;
+  color: #667085;
+}
+
+.dashboard-chart-subtitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #667085;
+  margin: 0 0 20px 0;
+}
+
+/* Technician Performance Bar Chart */
+.dashboard-performance-card {
+  width: 100%;
+}
+
+.dashboard-performance-legend {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-performance-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dashboard-performance-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 28px;
+}
+
+.dashboard-performance-legend-label {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #494949;
+}
+
+/* Bottom Section */
+.dashboard-bottom-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dashboard-bottom-row {
+  display: grid;
+  grid-template-columns: 530px 1fr;
+  gap: 24px;
+}
+
+/* Job Status Card */
+.dashboard-job-status-card {
+  max-width: 530px;
+}
+
+.dashboard-pie-chart {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.dashboard-pie-chart-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.dashboard-pie-center-text {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #252525;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  margin: 0;
+  pointer-events: none;
+}
+
+.dashboard-pie-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.dashboard-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-legend-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.dashboard-legend-value {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #252525;
+}
+
+/* Pending Jobs Card */
+.dashboard-pending-jobs-card {
+  flex: 1;
+}
+
+.dashboard-pending-jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dashboard-pending-job-item {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.dashboard-pending-job-item.active {
+  background: #F9FAFB;
+}
+
+.dashboard-pending-job-time {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.dashboard-pending-job-date {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #667085;
+}
+
+.dashboard-pending-job-hour {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #494949;
+}
+
+.dashboard-pending-job-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-pending-job-title {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #494949;
+}
+
+.dashboard-pending-job-client {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #667085;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-no-pending {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #667085;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Technicians Card */
+.dashboard-drivers-card {
+  flex: 1;
+}
+
+.dashboard-filter-btn {
+  background: #FFFFFF;
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #494949;
+  cursor: pointer;
+}
+
+.dashboard-drivers-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-table-header {
+  display: grid;
+  grid-template-columns: 44px 1fr 1fr;
+  gap: 12px;
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid #E4E7EC;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #667085;
+}
+
+.dashboard-table-header > span:last-child {
+  text-align: right;
+}
+
+.dashboard-table-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 1fr;
+  gap: 12px;
+  padding: 20px 0;
+  border-bottom: 1px solid #E4E7EC;
+  align-items: center;
+}
+
+.dashboard-table-row:last-child {
+  border-bottom: none;
+}
+
+.dashboard-table-number {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #252525;
+}
+
+.dashboard-table-tech {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-tech-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dashboard-tech-name {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #252525;
+}
+
+.dashboard-table-rate {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #FFFFFF;
+  background: #039855;
+  border-radius: 11px;
+  padding: 2px 10px;
+  width: fit-content;
+  justify-self: end;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .dashboard-metrics-grid {
+    flex-direction: column;
+  }
+
+  .dashboard-earnings-card {
+    width: 100%;
+    align-self: auto;
+  }
+
+  .dashboard-bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-job-status-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-metrics-left {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-traffic-list {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-traffic-item {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .dashboard-pie-chart {
+    flex-direction: column;
+  }
+
+  .dashboard-tabs {
+    flex-wrap: wrap;
+  }
+}

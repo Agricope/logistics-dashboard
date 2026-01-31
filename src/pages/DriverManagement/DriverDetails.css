@@ -1,0 +1,538 @@
+/* Technician Details Page Styles */
+
+.driver-details-wrapper {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Page Header */
+.driver-details-header-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.driver-details-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.driver-details-back-btn:hover {
+  background: #F0F0F0;
+}
+
+.driver-details-back-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.driver-details-page-title {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.driver-details-loading,
+.driver-details-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  color: #252525;
+}
+
+.driver-details-container {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.driver-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.driver-details-title {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.driver-details-status-pill {
+  display: inline-block;
+  min-width: 63px;
+  height: 24px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.driver-details-section {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.driver-details-profile {
+  display: flex;
+  align-items: flex-start;
+}
+
+.driver-details-profile-img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.driver-details-profile-info {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.driver-details-profile-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+}
+
+.driver-details-profile-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.driver-details-profile-email,
+.driver-details-profile-phone {
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+}
+
+.driver-details-profile-divider {
+  width: 1px;
+  height: 14px;
+  background: #D0D5DD;
+}
+
+.driver-details-profile-expertise {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.driver-details-profile-expertise-item {
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+}
+
+.driver-details-app-status {
+  text-align: right;
+}
+
+.driver-details-app-status-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+}
+
+.driver-details-app-status-pill {
+  margin-top: 18px;
+  display: inline-block;
+  min-width: 63px;
+  height: 24px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.driver-details-docs-cash-section {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.driver-details-docs {
+  flex: 1;
+  padding: 24px;
+  box-sizing: border-box;
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.driver-details-docs-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+}
+
+.driver-details-docs-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.driver-details-docs-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #494949;
+}
+
+.driver-details-docs-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.driver-details-docs-input {
+  width: 100%;
+  height: 44px;
+  margin-top: 6px;
+  border: 1px solid #E4E7EC;
+  border-radius: 8px;
+  padding: 0 12px;
+  padding-right: 60px;
+}
+
+.driver-details-docs-view-link {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-25%);
+  font-size: 14px;
+  font-weight: 500;
+  color: #0A5038;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.driver-details-docs-view-link:hover {
+  opacity: 0.8;
+}
+
+.driver-details-docs-valid-row {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  justify-content: space-between;
+}
+
+.driver-details-docs-valid-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #252525;
+}
+
+.driver-details-docs-update-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #F79009;
+  text-decoration: underline;
+}
+
+.driver-details-docs-approve-btn {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 161px;
+  height: 40px;
+  background: #0A5038;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.driver-details-cash-outer {
+  margin: 24px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  border: 1px solid #E4E7EC;
+  flex: 0 0 auto;
+  background: #FFFFFF;
+}
+
+.driver-details-cash {
+  width: 351px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.driver-details-cash-title {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.18px;
+  color: #252525;
+  align-self: flex-start;
+}
+
+/* Cash Progress Wrapper */
+.driver-details-cash-progress-wrapper {
+  position: relative;
+  width: 278px;
+  height: 139px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.driver-details-cash-progress-text {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.driver-details-cash-balance-label {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #667085;
+}
+
+.driver-details-cash-balance-amount {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.3px;
+  color: #252525;
+}
+
+.driver-details-cash-divider {
+  width: 100%;
+  height: 1px;
+  background: #E4E7EC;
+}
+
+.driver-details-cash-settle-btn {
+  width: 100%;
+  height: 40px;
+  background: #0A5038;
+  color: #FFFFFF;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+  border: 1px solid #0A5038;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.driver-details-cash-settle-btn:hover {
+  background: #7A1515;
+}
+
+/* New sections below */
+.driver-details-section-main {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.driver-details-section-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+  margin-bottom: 24px;
+}
+
+.driver-details-job-cards-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.driver-details-job-card {
+  flex: 1;
+  min-width: 0;
+  height: 116px;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.driver-details-job-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.driver-details-job-card-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.driver-details-job-card-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+}
+
+.driver-details-job-card-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #252525;
+}
+
+.driver-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+.driver-details-table th {
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #667085;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #E4E7EC;
+}
+
+.driver-details-table td {
+  font-size: 14px;
+  font-weight: 400;
+  color: #494949;
+  padding: 12px 8px;
+  border-bottom: 1px solid #E4E7EC;
+}
+
+.driver-details-job-status-pill {
+  display: inline-block;
+  min-width: 70px;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.driver-details-job-status-ongoing {
+  background: #F2F4F7;
+  color: #252525;
+}
+
+.driver-details-job-status-pending {
+  background: #FEF3F2;
+  color: #F79009;
+}
+
+.driver-details-job-status-completed {
+  background: #ECFDF3;
+  color: #12B76A;
+}
+
+.driver-details-profit-pill {
+  display: inline-block;
+  min-width: 70px;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.driver-details-profit-loss {
+  background: #FEF3F2;
+  color: #F04438;
+}
+
+.driver-details-profit-profit {
+  background: #ECFDF3;
+  color: #12B76A;
+}
+
+.driver-details-settlement-table th {
+  background: #F9FAFB;
+  font-size: 12px;
+  font-weight: 500;
+  color: #667085;
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #E4E7EC;
+}
+
+.driver-details-settlement-table td {
+  font-size: 14px;
+  font-weight: 400;
+  color: #494949;
+  padding: 12px 8px;
+  border-bottom: 1px solid #E4E7EC;
+}

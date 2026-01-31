@@ -1,0 +1,261 @@
+.drivers-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--spacing-lg);
+}
+
+.drivers-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-lg);
+}
+
+.drivers-title {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-text-primary);
+}
+
+.drivers-add-btn {
+  padding: 12px 24px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.drivers-add-btn:hover {
+  background: #7A1515;
+}
+
+/* Technician profile photo cell */
+.driver-profile-photo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.driver-name-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #E4E7EC;
+  object-fit: cover;
+}
+
+.driver-name-text {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #494949;
+}
+
+.driver-phone-cell {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #494949;
+}
+
+.driver-pill {
+  display: inline-block;
+  min-width: 48px;
+  height: 22px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+}
+
+.driver-activation-toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: #E4E7EC;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.driver-activation-toggle.active {
+  background: #0A5038;
+}
+
+.driver-activation-toggle-dot {
+  position: absolute;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.driver-vehicle-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.driver-vehicle-img {
+  width: 31px;
+  height: 32px;
+  margin-right: 6px;
+}
+
+.driver-vehicle-model {
+  font-size: 14px;
+  font-weight: 400;
+  color: #494949;
+}
+
+.driver-vehicle-dropdown-btn {
+  margin-left: 12px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.driver-vehicle-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.driver-vehicle-dropdown-menu {
+  position: fixed;
+  width: 260px;
+  max-height: 400px;
+  background: #fff;
+  border: 1px solid #E4E7EC;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(16,24,40,0.08);
+  padding: 12px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-vehicle-dropdown-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.driver-vehicle-dropdown-search-row {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #D0D5DD;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  background: #F9FAFB;
+}
+
+.driver-vehicle-dropdown-search-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+  margin-right: 8px;
+}
+
+.driver-vehicle-dropdown-search-input {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #98A2B3;
+  outline: none;
+  flex: 1;
+}
+
+.driver-vehicle-dropdown-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.driver-vehicle-dropdown-no-results {
+  padding: 20px;
+  text-align: center;
+  color: #98A2B3;
+  font-size: 14px;
+}
+
+.driver-vehicle-dropdown-list-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.driver-vehicle-dropdown-list-item:hover {
+  background: #F9FAFB;
+}
+
+.driver-vehicle-dropdown-list-img {
+  width: 24px;
+  height: 24px;
+}
+
+.driver-vehicle-dropdown-list-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #494949;
+  margin-left: 2px;
+}
+
+/* Technician actions */
+.driver-actions-cell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.driver-action-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  padding: 0;
+}
+
+.driver-action-btn:hover {
+  opacity: 0.7;
+}
+
+.driver-action-icon {
+  width: 20px;
+  height: 20px;
+}

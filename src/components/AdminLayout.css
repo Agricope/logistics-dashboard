@@ -1,0 +1,21 @@
+.admin-layout-content {
+  margin-left: 292px;
+  transition: margin-left 0.2s;
+}
+
+.sidebar-collapsed ~ .admin-layout-content {
+  margin-left: 0;
+}
+
+/* Removed the 1440px media query that set margin-left to 220px */
+
+@media (max-width: 900px) {
+  .admin-layout-content {
+    margin-left: 64px;
+  }
+  .sidebar-collapsed ~ .admin-layout-content {
+    margin-left: 0;
+  }
+}
+
+/* Remove any unnecessary top margin for content, as requested */

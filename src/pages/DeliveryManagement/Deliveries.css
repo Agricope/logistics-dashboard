@@ -1,0 +1,238 @@
+.jobs-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--spacing-lg);
+}
+
+.jobs-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-lg);
+}
+
+.jobs-title {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-text-primary);
+}
+
+.jobs-add-btn {
+  padding: 12px 24px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.jobs-add-btn:hover {
+  background: #7A1515;
+}
+
+/* Job ID cell */
+.delivery-id-cell {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Client info cell */
+.delivery-client-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.delivery-client-name {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.delivery-client-mobile {
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* Date time cell */
+.delivery-datetime-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.delivery-date {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.delivery-time {
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* Location cell */
+.delivery-location-cell {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+/* Assigned technician cell */
+.delivery-tech-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.delivery-tech-cell:hover {
+  opacity: 0.7;
+}
+
+.delivery-tech-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.delivery-tech-name {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.delivery-no-tech {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* Payment status pills */
+.delivery-payment-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.delivery-payment-pill.paid {
+  background: #10B981;
+}
+
+.delivery-payment-pill.unpaid {
+  background: #EF4444;
+}
+
+/* Job status pills */
+.delivery-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  color: #FFFFFF;
+}
+
+.delivery-status-pill.confirmed {
+  background-color: var(--color-confirmed);
+}
+
+.delivery-status-pill.completed {
+  background-color: var(--color-completed);
+}
+
+.delivery-status-pill.pending {
+  background-color: var(--color-pending);
+}
+
+.delivery-status-pill.cancelled {
+  background-color: var(--color-rejected);
+}
+
+.delivery-status-pill.arrived {
+  background-color: var(--color-arrived);
+}
+
+.delivery-status-pill.in_progress,
+.delivery-status-pill.in-progress {
+  background-color: var(--color-in-progress);
+}
+
+.delivery-status-pill.en_route,
+.delivery-status-pill.en-route {
+  background-color: var(--color-enroute);
+}
+
+.delivery-status-pill.assigned,
+.delivery-status-pill.technician-assigned {
+  background-color: var(--color-technician-assigned);
+}
+
+.delivery-status-pill.accepted {
+  background-color: var(--color-accepted);
+}
+
+.delivery-status-pill.in_call,
+.delivery-status-pill.in-call {
+  background-color: var(--color-in-call);
+  color: #92400E;
+}
+
+/* Job actions */
+.delivery-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.delivery-action-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  padding: 0;
+}
+
+.delivery-action-btn:hover {
+  opacity: 0.7;
+}
+
+.delivery-action-btn img {
+  width: 20px;
+  height: 20px;
+}

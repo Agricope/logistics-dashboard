@@ -1,0 +1,133 @@
+/* Admin Management Page Styles */
+
+.admin-management-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--spacing-lg);
+}
+
+.admin-management-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.admin-management-title {
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-text-primary);
+}
+
+.admin-management-add-btn {
+  padding: 12px 24px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-management-add-btn:hover {
+  background: #7A1515;
+}
+
+/* Admin profile photo cell */
+.admin-profile-photo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-name-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #E4E7EC;
+  object-fit: cover;
+}
+
+.admin-name-text {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #494949;
+}
+
+/* Admin table cells */
+.admin-phone-cell,
+.admin-email-cell,
+.admin-role-cell {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #494949;
+}
+
+/* Admin status toggle */
+.admin-activation-toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: #E4E7EC;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-activation-toggle.active {
+  background: #0A5038;
+}
+
+.admin-activation-toggle-dot {
+  position: absolute;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin actions */
+.admin-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-action-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  padding: 0;
+}
+
+.admin-action-btn:hover {
+  opacity: 0.7;
+}
+
+.admin-action-btn img {
+  width: 20px;
+  height: 20px;
+}
