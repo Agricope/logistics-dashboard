@@ -45,13 +45,6 @@ export const deliveryApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["Delivery"]
     }),
-    getDeliveryRepairs: builder.query({
-      query: (deliveryId) => ({
-        url: `/jobs/${deliveryId}/repairs`,
-        method: "GET"
-      }),
-      providesTags: ["Repair"]
-    }),
     getDeliveryTypes: builder.query({
       query: () => ({
         url: "/job-types",
@@ -67,6 +60,5 @@ export const {
   useUpdateDeliveryMutation,
   useDeleteDeliveryMutation,
   useGetDeliveryByIdQuery,
-  useGetDeliveryRepairsQuery,
   useGetDeliveryTypesQuery
 } = deliveryApi;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetDeliveryByIdQuery, useGetDeliveryRepairsQuery, useUpdateDeliveryMutation } from "../../store/deliveryApi";
+import { useGetDeliveryByIdQuery, useUpdateDeliveryMutation } from "../../store/deliveryApi";
 import { useGetDriversQuery } from "../../store/driverApi";
 import io from "socket.io-client";
 import "./DeliveryDetails.css";
@@ -9,8 +9,7 @@ function DeliveryDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data, isLoading, error, refetch } = useGetDeliveryByIdQuery(id);
-  const { data: repairsData } = useGetDeliveryRepairsQuery(id);
-  const { data: driversData } = useGetDriversQuery();
+  const { data: driversData } = useGetDriversQuery({ page: 1, limit: 100 });
   const [updateDelivery] = useUpdateDeliveryMutation();
   
   const [socket, setSocket] = useState(null);
@@ -22,8 +21,7 @@ function DeliveryDetails() {
   const [estimateValue, setEstimateValue] = useState("");
   const techDropdownRef = useRef(null);
 
-  const job = data?.delivery;
-  const repairs = repairsData?.repairs || [];
+  const job = data?.job;
   const drivers = driversData?.drivers || [];
   const financials = data?.financials || { 
     currentEstimate: 0, 
@@ -68,8 +66,8 @@ function DeliveryDetails() {
 
   // Initialize selected driver from job data
   useEffect(() => {
-    if (job?.assignedDriver) {
-      setSelectedDriver(job.assignedDriver);
+    if (job?.assignedTechnician) {
+      setSelectedDriver(job.assignedTechnician);
     }
     if (job?.estimate) {
       setEstimateValue(job.estimate);
@@ -87,20 +85,16 @@ function DeliveryDetails() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Filter drivers by search, expertise matching job type, online status, and vehicle assignment
+  // Filter drivers by search, online status, and vehicle assignment
   const filteredDrivers = drivers.filter(tech => {
     const fullName = `${tech.firstName} ${tech.lastName}`.toLowerCase();
     const matchesSearch = fullName.includes(techSearch.toLowerCase());
     const isApproved = tech.applicationStatus === 'Approved';
     const isOnline = tech.currentStatus === 'Online';
     const hasVehicle = !!tech.assignedVehicle;
+    const isNotBusy = tech.currentStatus !== 'On Job';
     
-    // Check if driver's expertise matches job type
-    const matchesExpertise = job?.deliveryType ? 
-      (tech.expertise || []).includes(job.deliveryType) : 
-      true; // If no job type, show all drivers
-    
-    return matchesSearch && isApproved && isOnline && hasVehicle && matchesExpertise;
+    return matchesSearch && isApproved && isOnline && hasVehicle && isNotBusy;
   });
 
   // Handle driver selection
@@ -115,13 +109,13 @@ function DeliveryDetails() {
     try {
       await updateDelivery({
         id: job._id,
-        assignedDriver: selectedDriver?._id || null
+        assignedTechnician: selectedDriver?._id || null
       }).unwrap();
-      alert('Job updated successfully');
+      alert('Delivery updated successfully');
       refetch();
     } catch (err) {
-      console.error('Failed to update job:', err);
-      alert('Failed to update job');
+      console.error('Failed to update delivery:', err);
+      alert('Failed to update delivery');
     }
   };
 
@@ -169,7 +163,7 @@ function DeliveryDetails() {
     socket.emit('adminCancelJob', {
       job_id: job._id,
       customer_id: job.customer_id?._id || job.customer_id,
-      driver_id: job.assignedDriver?._id || job.assignedDriver,
+      driver_id: job.assignedTechnician?._id || job.assignedTechnician,
       reason: 'Cancelled by admin'
     });
   };
@@ -179,7 +173,7 @@ function DeliveryDetails() {
   }
 
   if (error || !job) {
-    return <div className="delivery-details-error">Job not found</div>;
+    return <div className="delivery-details-error">Delivery not found</div>;
   }
 
   // Format date and time
@@ -211,11 +205,11 @@ function DeliveryDetails() {
     return statusMap[status] || { label: status, class: "default" };
   };
 
-  const statusInfo = getJobStatusInfo(job.delivery_status);
+  const statusInfo = getJobStatusInfo(job.job_status);
 
   return (
     <div className="delivery-details-container">
-      <h1 className="delivery-details-page-header">Job Management</h1>
+      <h1 className="delivery-details-page-header">Delivery Management</h1>
       
       <div className="delivery-details-card">
         <div className="delivery-details-header">
@@ -223,10 +217,10 @@ function DeliveryDetails() {
         </div>
 
         <div className="delivery-details-content">
-          {/* Job Information Section */}
+          {/* Delivery Information Section */}
           <div className="delivery-details-section">
             <div className="delivery-details-section-left">
-              <h3 className="delivery-details-section-title">Job Information</h3>
+              <h3 className="delivery-details-section-title">Delivery Information</h3>
               
               <div className="delivery-details-info-grid">
                 <div className="delivery-details-info-column">
@@ -236,13 +230,13 @@ function DeliveryDetails() {
                   </div>
                   
                   <div className="delivery-details-info-group">
-                    <span className="delivery-details-label">Job Location</span>
+                    <span className="delivery-details-label">Delivery Location</span>
                     <div className="delivery-details-location">
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M9 9.75C10.2426 9.75 11.25 8.74264 11.25 7.5C11.25 6.25736 10.2426 5.25 9 5.25C7.75736 5.25 6.75 6.25736 6.75 7.5C6.75 8.74264 7.75736 9.75 9 9.75Z" stroke="#5A5A5A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M9 16.5C9 16.5 15 11.625 15 7.5C15 4.18629 12.3137 1.5 9 1.5C5.68629 1.5 3 4.18629 3 7.5C3 11.625 9 16.5 9 16.5Z" stroke="#5A5A5A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      <span className="delivery-details-location-link">{job.location}</span>
+                      <span className="delivery-details-location-link">{job.delivery_address || job.location}</span>
                     </div>
                   </div>
                 </div>
@@ -300,53 +294,6 @@ function DeliveryDetails() {
                     <span className="delivery-details-value">{job.clientMobileNumber}</span>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="delivery-details-divider"></div>
-
-            <div className="delivery-details-section-right">
-              <h3 className="delivery-details-section-title">Customer Vehicle Information</h3>
-              
-              <div className="delivery-details-vehicle-box">
-                <div className="delivery-details-info-grid">
-                  <div className="delivery-details-info-column">
-                    <div className="delivery-details-info-group">
-                      <span className="delivery-details-label">Make</span>
-                      <span className="delivery-details-value-dark">
-                        {job.customer_vehicle_id?.vehicle_make?.name || 'N/A'}
-                      </span>
-                    </div>
-                    
-                    <div className="delivery-details-info-group">
-                      <span className="delivery-details-label">Type</span>
-                      <span className="delivery-details-value-dark">
-                        {job.customer_vehicle_id?.vehicle_type || 'N/A'}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="delivery-details-info-column">
-                    <div className="delivery-details-info-group">
-                      <span className="delivery-details-label">Model</span>
-                      <span className="delivery-details-value-dark">
-                        {job.customer_vehicle_id?.vehicle_model?.name || 'N/A'}
-                      </span>
-                    </div>
-                    
-                    <div className="delivery-details-info-group">
-                      <span className="delivery-details-label">Plate Number</span>
-                      <span className="delivery-details-value-dark">
-                        {job.customer_vehicle_id?.plate_number || 'N/A'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="delivery-details-info-group">
-                <span className="delivery-details-label">Issue</span>
-                <span className="delivery-details-value">{job.issue}</span>
               </div>
             </div>
           </div>
@@ -447,161 +394,61 @@ function DeliveryDetails() {
             </div>
           </div>
 
-          {/* Job Pricing & Parts Section */}
+          {/* Produce Items Section */}
           <div className="delivery-details-section-full">
-            <h3 className="delivery-details-section-title">Job Pricing & Parts</h3>
+            <h3 className="delivery-details-section-title">Produce Items</h3>
             
-            {!isPaid ? (
-              /* Before Payment */
-              <>
-                <div className="delivery-details-pricing-row">
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Price</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input"
-                      placeholder="0"
-                      value={currentEstimate ? `QR ${currentEstimate.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Cost</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input delivery-details-input-error"
-                      placeholder="0"
-                      value={totalCost ? `QR ${totalCost.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Profit</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input delivery-details-input-success"
-                      placeholder="0"
-                      value={currentProfit ? `QR ${currentProfit.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-                </div>
-
-                <div className="delivery-details-pricing-row">
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Admin Estimate</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input"
-                      placeholder="0"
-                      value={`QR ${job?.price?.toFixed(2) || '0.00'}`}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Driver Estimate</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input"
-                      placeholder="0"
-                      value={currentEstimate ? `QR ${currentEstimate.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-                </div>
-              </>
+            {!job.produce_items || job.produce_items.length === 0 ? (
+              <div className="delivery-details-repairs-empty">
+                No produce items added for this delivery.
+              </div>
             ) : (
-              /* After Payment */
-              <>
-                <div className="delivery-details-pricing-row" style={{ marginTop: '16px' }}>
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Price</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input"
-                      placeholder="0"
-                      value={currentEstimate ? `QR ${currentEstimate.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
+              <div className="delivery-details-produce-container">
+                <table className="delivery-details-produce-table">
+                  <thead>
+                    <tr>
+                      <th>Item Name</th>
+                      <th>Quantity</th>
+                      <th>Unit</th>
+                      <th>Price/Unit</th>
+                      <th>Total Price</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {job.produce_items.map((item, index) => (
+                      <tr key={item._id || index}>
+                        <td className="delivery-details-produce-name">{item.name}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.unit}</td>
+                        <td>QR {item.price_per_unit?.toFixed(2) || '0.00'}</td>
+                        <td className="delivery-details-produce-total">QR {item.total_price?.toFixed(2) || '0.00'}</td>
+                        <td>
+                          <span className={`delivery-details-produce-status ${item.is_delivered ? 'delivered' : 'pending'}`}>
+                            {item.is_delivered ? 'Delivered' : 'Pending'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="4" className="delivery-details-produce-total-label">Total Amount:</td>
+                      <td className="delivery-details-produce-total-value" colSpan="2">
+                        QR {job.price?.toFixed(2) || '0.00'}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+                
+                {job.delivery_notes && (
+                  <div className="delivery-details-notes">
+                    <h4 className="delivery-details-notes-title">Delivery Notes:</h4>
+                    <p className="delivery-details-notes-text">{job.delivery_notes}</p>
                   </div>
-
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Cost</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input delivery-details-input-error"
-                      placeholder="0"
-                      value={totalCost ? `QR ${totalCost.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-
-                  <div className="delivery-details-form-group">
-                    <label className="delivery-details-form-label">Profit</label>
-                    <input 
-                      type="text" 
-                      className="delivery-details-input delivery-details-input-success"
-                      placeholder="0"
-                      value={currentProfit ? `QR ${currentProfit.toFixed(2)}` : ''}
-                      readOnly
-                      disabled
-                    />
-                  </div>
-                </div>
-              </>
+                )}
+              </div>
             )}
-          </div>
-
-          {/* Repair Procedures Section */}
-          <div className="delivery-details-section-full">
-            <div className="delivery-details-repair-section">
-              <label className="delivery-details-form-label">Repair Procedures</label>
-              {repairs.length === 0 ? (
-                <div className="delivery-details-repairs-empty">
-                  No repairs added yet. Repairs will appear here once the driver completes the job.
-                </div>
-              ) : (
-                <div className="delivery-details-repairs-container">
-                  {repairs.map((repair, index) => (
-                    <div key={repair._id || index} className="delivery-details-repair-card">
-                      <div className="delivery-details-repair-card-header">
-                        <h3 className="delivery-details-repair-card-title">Repair {index + 1}</h3>
-                      </div>
-                      
-                      <div className="delivery-details-repair-info-grid">
-                        <div className="delivery-details-repair-info-column">
-                          <div className="delivery-details-repair-info-item">
-                            <span className="delivery-details-repair-info-label">Description</span>
-                            <span className="delivery-details-repair-info-value">{repair.description}</span>
-                          </div>
-                          <div className="delivery-details-repair-info-item">
-                            <span className="delivery-details-repair-info-label">Price</span>
-                            <span className="delivery-details-repair-info-value">{repair.price?.toFixed(2) || '0.00'}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="delivery-details-repair-info-column">
-                          <div className="delivery-details-repair-info-item">
-                            <span className="delivery-details-repair-info-label">Quantity</span>
-                            <span className="delivery-details-repair-info-value">{repair.quantity || 1}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
         </div>
 
@@ -611,11 +458,11 @@ function DeliveryDetails() {
             Download Receipt
           </button>
           <button 
-            className={`delivery-details-btn ${job.delivery_status === 'cancelled' ? 'delivery-details-btn-secondary-disabled' : 'delivery-details-btn-danger'}`}
+            className={`delivery-details-btn ${job.job_status === 'cancelled' ? 'delivery-details-btn-secondary-disabled' : 'delivery-details-btn-danger'}`}
             onClick={handleCancelJob}
-            disabled={cancelling || job.delivery_status === 'cancelled'}
+            disabled={cancelling || job.job_status === 'cancelled'}
           >
-            {cancelling ? 'Cancelling...' : job.delivery_status === 'cancelled' ? 'Job Cancelled' : 'Cancel Job'}
+            {cancelling ? 'Cancelling...' : job.job_status === 'cancelled' ? 'Delivery Cancelled' : 'Cancel Delivery'}
           </button>
           <button 
             className="delivery-details-btn delivery-details-btn-primary"

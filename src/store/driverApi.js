@@ -3,10 +3,26 @@ import { apiSlice } from "./apiSlice";
 export const driverApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getDrivers: builder.query({
-      query: ({ page = 1, limit = 10, search = "" } = {}) => ({
-        url: `/technicians?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`,
-        method: "GET"
-      }),
+      query: ({ page = 1, limit = 10, search = "", currentStatus, applicationStatus } = {}) => {
+        let url = `/technicians?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`;
+        if (currentStatus) {
+          url += `&currentStatus=${encodeURIComponent(currentStatus)}`;
+        }
+        if (applicationStatus) {
+          url += `&applicationStatus=${encodeURIComponent(applicationStatus)}`;
+        }
+        return {
+          url,
+          method: "GET"
+        };
+      },
+      transformResponse: (response) => {
+        // Transform the API response to match expected format
+        return {
+          drivers: response.technicians || [],
+          total: response.total || 0
+        };
+      },
       providesTags: ["Driver"]
     }),
     getOnlineDrivers: builder.query({

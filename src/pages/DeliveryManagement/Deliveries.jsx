@@ -45,23 +45,23 @@ function ClientInfoCell({ job }) {
   );
 }
 
-function AssignedDriverCell({ driver, navigate }) {
-  if (!driver) {
+function AssignedDriverCell({ technician, navigate }) {
+  if (!technician) {
     return <span className="delivery-no-driver">No Driver</span>;
   }
 
   return (
     <div 
       className="delivery-driver-cell"
-      onClick={() => navigate(`/drivers/${driver._id}`)}
+      onClick={() => navigate(`/drivers/${technician._id}`)}
     >
       <img
-        src={driver.profileImage || "/icons/user.svg"}
+        src={technician.profileImage || "/icons/user.svg"}
         alt="Driver"
         className="delivery-driver-img"
       />
       <span className="delivery-driver-name">
-        {driver.firstName} {driver.lastName}
+        {technician.firstName} {technician.lastName}
       </span>
     </div>
   );
@@ -149,18 +149,18 @@ function Deliveries() {
       )
     },
     {
-      title: "Job Location",
+      title: "Delivery Location",
       key: "location",
       dataIndex: "location",
       width: "13%",
       render: (row) => (
         <span className="job-location-cell">
-          {row.location}
+          {row.delivery_address || row.location}
         </span>
       )
     },
     {
-      title: "Assigned Technician",
+      title: "Assigned Driver",
       key: "assignedTechnician",
       dataIndex: "assignedTechnician",
       width: "15%",
