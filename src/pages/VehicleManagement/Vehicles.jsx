@@ -149,7 +149,7 @@ function Vehicles() {
       )
     },
     {
-      title: "Assigned Technician",
+      title: "Assigned Driver",
       key: "assignedTechnician",
       dataIndex: "assignedTechnician",
       width: "20%",

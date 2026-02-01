@@ -50,12 +50,12 @@ export default function VehicleDetails() {
     try {
       await unassignDriver(id).unwrap();
       setSuccessMessage({
-        title: "Technician Unassigned",
-        subtitle: "The technician has been successfully unassigned from this vehicle."
+        title: "Driver Unassigned",
+        subtitle: "The driver has been successfully unassigned from this vehicle."
       });
       setShowSuccessModal(true);
     } catch (error) {
-      alert('Failed to unassign technician: ' + (error.data?.message || error.message));
+      alert('Failed to unassign driver: ' + (error.data?.message || error.message));
     }
   };
 
@@ -119,10 +119,10 @@ export default function VehicleDetails() {
             </div>
           </div>
 
-          {/* Assigned Technician */}
+          {/* Assigned Driver */}
           <div className="vehicle-details-technician-section">
             <div className="vehicle-details-section-content-full">
-              <h3 className="vehicle-details-section-title">Assigned Technician</h3>
+              <h3 className="vehicle-details-section-title">Assigned Driver</h3>
               {vehicle.assignedDriver ? (
                 <>
                   <div className="vehicle-details-technician-display">
@@ -145,7 +145,7 @@ export default function VehicleDetails() {
                           className="vehicle-details-unassign-link"
                           onClick={handleUnassignTechnician}
                         >
-                          Unassign technician
+                          Unassign driver
                         </button>
                       </div>
                     </div>
@@ -154,17 +154,17 @@ export default function VehicleDetails() {
                     className="vehicle-details-btn-primary"
                     onClick={handleUpdateTechnician}
                   >
-                    Update Assigned Technician
+                    Update Assigned Driver
                   </button>
                 </>
               ) : (
                 <div className="vehicle-details-no-technician">
-                  <p>No technician assigned</p>
+                  <p>No driver assigned</p>
                   <button 
                     className="vehicle-details-btn-primary"
                     onClick={handleUpdateTechnician}
                   >
-                    Assign Technician
+                    Assign Driver
                   </button>
                 </div>
               )}
@@ -306,8 +306,8 @@ export default function VehicleDetails() {
         open={showUnassignConfirm}
         onClose={() => setShowUnassignConfirm(false)}
         onConfirm={confirmUnassignTechnician}
-        title="Unassign Technician"
-        message="Are you sure you want to unassign this technician from the vehicle?"
+        title="Unassign Driver"
+        message="Are you sure you want to unassign this driver from the vehicle?"
       />
 
       {/* Success Modal */}
