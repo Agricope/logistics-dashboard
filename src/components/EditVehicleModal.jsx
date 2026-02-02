@@ -28,7 +28,7 @@ function EditVehicleModal({ open, onClose, vehicleId, vehicle, onSuccess }) {
   
   const makes = makesData?.makes || [];
   const allModels = modelsData?.models || [];
-  const drivers = driversData?.technicians || [];
+  const drivers = driversData?.drivers || [];
   
   // Filter models based on selected make
   const models = formData.make 
@@ -225,9 +225,9 @@ function EditVehicleModal({ open, onClose, vehicleId, vehicle, onSuccess }) {
                     onChange={handleInputChange}
                   >
                     <option value="">Select Driver (Optional)</option>
-                    {technicians.map(tech => (
-                      <option key={tech._id} value={tech._id}>
-                        {tech.firstName} {tech.lastName} - {tech.phone}
+                    {drivers.map(driver => (
+                      <option key={driver._id} value={driver._id}>
+                        {driver.firstName} {driver.lastName} - {driver.phone}
                       </option>
                     ))}
                   </select>
