@@ -5,16 +5,16 @@ import DataTable from "../../components/DataTable/DataTable.jsx";
 import SuccessModal from "../../components/SuccessModal.jsx";
 import "./Performance.css";
 
-function PerformanceNameCell({ driver, navigate }) {
+function PerformanceNameCell({ row, navigate }) {
   return (
-    <div className="performance-name-cell" onClick={() => navigate(`/drivers/${driver._id}`)}>
+    <div className="performance-name-cell" onClick={() => navigate(`/drivers/${row?._id}`)}>
       <img
-        src={driver.profileImage || "/icons/user.svg"}
+        src={row?.profileImage || "/icons/user.svg"}
         alt="Driver"
         className="performance-name-img"
       />
       <span className="performance-name-text">
-        {driver.firstName} {driver.lastName}
+        {row?.firstName || 'N/A'} {row?.lastName || ''}
       </span>
     </div>
   );
@@ -61,7 +61,7 @@ function Performance() {
       dataIndex: "name",
       width: "15%",
       render: (row) => (
-        <PerformanceNameCell technician={row} navigate={navigate} />
+        <PerformanceNameCell row={row} navigate={navigate} />
       )
     },
     {
