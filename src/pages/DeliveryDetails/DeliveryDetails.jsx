@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useGetDeliveryByIdQuery, useUpdateDeliveryMutation } from "../../store/deliveryApi";
 import { useGetDriversQuery } from "../../store/driverApi";
 import io from "socket.io-client";
+import Receipt from "../../components/Receipt";
 import "./DeliveryDetails.css";
 
 function DeliveryDetails() {
@@ -18,6 +19,7 @@ function DeliveryDetails() {
   const [showTechDropdown, setShowTechDropdown] = useState(false);
   const [techSearch, setTechSearch] = useState("");
   const [editingEstimate, setEditingEstimate] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false);
   const [estimateValue, setEstimateValue] = useState("");
   const techDropdownRef = useRef(null);
 
@@ -454,8 +456,12 @@ function DeliveryDetails() {
 
         {/* Action Buttons */}
         <div className="delivery-details-actions">
-          <button className="delivery-details-btn delivery-details-btn-secondary-disabled">
-            Download Receipt
+          <button 
+            className="delivery-details-btn delivery-details-btn-secondary"
+            onClick={() => setShowReceipt(true)}
+            disabled={!job}
+          >
+            View Receipt
           </button>
           <button 
             className={`delivery-details-btn ${job.job_status === 'cancelled' ? 'delivery-details-btn-secondary-disabled' : 'delivery-details-btn-danger'}`}
@@ -472,6 +478,11 @@ function DeliveryDetails() {
           </button>
         </div>
       </div>
+
+      {/* Receipt Modal */}
+      {showReceipt && job && (
+        <Receipt job={job} onClose={() => setShowReceipt(false)} />
+      )}
     </div>
   );
 }
